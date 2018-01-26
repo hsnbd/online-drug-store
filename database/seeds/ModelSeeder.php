@@ -34,8 +34,8 @@ class ModelSeeder extends Seeder
         factory(Unit::class, 10)->create();
         factory(Medicine::class, 300)->create();
         factory(User::class, 10)->create();
-        // factory(Rating::class, 50)->create();
-        // factory(Comment::class, 30)->create();
+        factory(Rating::class, 50)->create();
+        factory(Comment::class, 30)->create();
         factory(WatchList::class, 20)->create();
         factory(Remedy::class, 80)->create();
         factory(Shipping::class, 30)->create();
