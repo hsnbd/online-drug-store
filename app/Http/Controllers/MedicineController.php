@@ -14,7 +14,7 @@ class MedicineController extends Controller
      */
     public function index()
     {
-        //
+        return view('medicine_lists');
     }
 
     /**

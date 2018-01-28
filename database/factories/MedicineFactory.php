@@ -19,5 +19,7 @@ $factory->define(App\Medicine::class, function (Faker $faker) {
         'unit_id' => $faker->numberBetween(1, 10),
         'generic_id' => $faker->numberBetween(1, 10),
         'power_id' => $faker->numberBetween(1, 10),
+        'shape_id' => $faker->numberBetween(1, 8),
+        'color_id' => $faker->numberBetween(1, 7),
     ];
 });

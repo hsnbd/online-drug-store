@@ -25,6 +25,8 @@ class CreateMedicinesTable extends Migration
             $table->integer('unit_id')->unsigned();
             $table->integer('generic_id')->unsigned();
             $table->integer('power_id')->unsigned();
+            $table->integer('shape_id')->unsigned();
+            $table->integer('color_id')->unsigned();
             $table->timestamps();
         });
     }

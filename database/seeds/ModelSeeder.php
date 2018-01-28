@@ -3,8 +3,10 @@
 use Illuminate\Database\Seeder;
 use App\Disease;
 use App\User;
+use App\Admin;
 use App\Unit;
 use App\Power;
+use App\Shape;
 use App\Rating;
 use App\Comment;
 use App\Remedy;
@@ -16,6 +18,7 @@ use App\Supplier;
 use App\WatchList;
 use App\SaleDetail;
 use App\SubCategory;
+use App\Color;
 
 class ModelSeeder extends Seeder
 {
@@ -34,6 +37,7 @@ class ModelSeeder extends Seeder
         factory(Unit::class, 10)->create();
         factory(Medicine::class, 300)->create();
         factory(User::class, 10)->create();
+        factory(Admin::class, 10)->create();
         factory(Rating::class, 50)->create();
         factory(Comment::class, 30)->create();
         factory(WatchList::class, 20)->create();
@@ -41,5 +45,7 @@ class ModelSeeder extends Seeder
         factory(Shipping::class, 30)->create();
         factory(SaleDetail::class, 40)->create();
         factory(Supplier::class, 40)->create();
+        factory(Shape::class, 8)->create();
+        factory(Color::class, 7)->create();
     }
 }
