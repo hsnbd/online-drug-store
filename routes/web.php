@@ -63,3 +63,8 @@ Route::prefix('admin')->group(function ()
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 });
+Route::prefix('socialauth')->group(function ()
+{
+    Route::get('/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback')->name('social.callback');
+    Route::get('/{provider}', 'Auth\SocialAuthController@redirectToProvider')->name('social.provider');
+});
