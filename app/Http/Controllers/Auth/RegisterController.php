@@ -6,7 +6,10 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Http\Request;
+use Mail;
+use App\Mail\EmailConfirmation;
+use App\EmailConfirm;
 class RegisterController extends Controller
 {
     /*
@@ -38,6 +41,22 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        // auth()->guard()->login($user);
+        return $this->registered($request, $user)
+                        ?: redirect('/login')->with('status', 'Confirmation email sent. Please check your email');
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -63,10 +82,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        EmailConfirm::create([
+            'user_id' => $user->id,
+            'token' => base64_encode($user->email)
+        ]);
+
+        Mail::to($user)->send(new EmailConfirmation($user));
+
+        return $user;
     }
 }

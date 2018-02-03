@@ -7,8 +7,18 @@
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in to DrugStore Dashboard</p>
 
+        <p class="login-box-msg">Sign in to DrugStore Dashboard</p>
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+        @if (session('warning'))
+            <div class="alert alert-warning">
+                {{ session('warning') }}
+            </div>
+        @endif
         <form action="{{route('login')}}" method="post">
             {{csrf_field()}}
           <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">

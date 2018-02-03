@@ -1,5 +1,7 @@
 <?php
 Route::get('/', 'BaseController@index')->name('master');
+Route::get('/email/{token}', 'BaseController@confirmEmail');
+
 Route::resources([
     'categories' => 'CategoryController',
     'sub_categories' => 'SubCategoryController',
@@ -48,6 +50,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function ()
 {
+    Route::get('/customers/{id}/show', 'Admin\UserController@show')->name('customers.show');
+    Route::get('/customers/{id}/edit', 'Admin\UserController@index')->name('customers.edit');
+    Route::get('/customers/{id}/status', 'Admin\UserController@status')->name('customers.status');
+    Route::get('/customers/{id}/delete', 'Admin\UserController@destroy')->name('customers.destroy');
+    Route::get('/customers', 'Admin\UserController@index')->name('customers.index');
+
+
+
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');

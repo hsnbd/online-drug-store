@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function emailConfirm()
+    {
+        return $this->hasOne(EmailConfirm::class);
+    }
+
     //All hasMany Relation Table
     public function watch_lists()
     {
@@ -44,7 +49,6 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(SaleDetail::class, Shipping::class);
     }
-
 
 
 
