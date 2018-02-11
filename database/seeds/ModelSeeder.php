@@ -36,7 +36,7 @@ class ModelSeeder extends Seeder
         factory(Power::class, 10)->create();
         factory(Unit::class, 10)->create();
         factory(Medicine::class, 300)->create();
-        factory(User::class, 10)->create();
+        factory(User::class, 300)->create();
         factory(Admin::class, 10)->create();
         factory(Rating::class, 50)->create();
         factory(Comment::class, 30)->create();

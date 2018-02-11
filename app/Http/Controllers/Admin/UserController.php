@@ -8,35 +8,44 @@ use App\User;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function index()
     {
-        $users = User::paginate(8);
-        return view('admin.customers', compact('users'));
+        $users = User::paginate(5);
+        return ( request()->wantsJson() ) ? response()->json($users) :
+                                          view('admin.customers')->with('users', $users);
+    }
+
+    public function show($id)
+    {
+      $user = User::find($id) ?: "Something Wrong";
+      return response()->json($user);
     }
     /**
     * @param id
     */
     public function destroy($id)
     {
-        if (User::destroy($id)) {
-            return redirect()->back()->withSuccess('Record Deleted Successful');
-        }
-        return redirect()->back()->withErrors('Record Deleted Successful');
+        return User::destroy($id) ?
+                response()->json("User Deleted Successful") :
+                          response()->json("Something Wrong!!!");
     }
     /**
     * @param id
+    * To change User Status
     */
     public function status($id)
     {
-        $user = User::find($id);
-        if ($user->status) {
-            $user->status = 0;
-            $user->save();
-            return redirect()->back()->withSuccess('Customer Status Inactive Now');
-        }
-        $user->status = 1;
+        $user =  User::find($id);
+        $status = $user->status ? 'Customer Status Inactive Now' : 'Customer Status Active Now';
+
+        $user->status = !$user->status;
         $user->save();
-        return redirect()->back()->withSuccess('Customer Status Active Now');
+        return response()->json($status);
     }
 
 }

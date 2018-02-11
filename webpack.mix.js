@@ -12,6 +12,7 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
+    .js('resources/assets/js/admin.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
     .scripts([
         'public/js/getwidthbrowser.js',
@@ -44,3 +45,4 @@ mix.js('resources/assets/js/app.js', 'public/js')
          // 'public/css/boss_filterproduct.css',
          // 'public/css/revolutionslider_settings.css',
     ], 'public/css/all.css');
+mix.disableNotifications();

@@ -16,7 +16,11 @@
         "jquery": "^2.1.1",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
-        "sweetalert": "^2.1.0",
-        "vue": "^2.5.7"
+        "vue": "^2.5.7",
+        "vue-moment": "^3.1.0"
+    },
+    "dependencies": {
+        "debug": "^3.1.0",
+        "vue-sweetalert2": "^1.2.4"
     }
 }
